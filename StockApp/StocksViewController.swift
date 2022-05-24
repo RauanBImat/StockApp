@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StocksViewController: UIViewController {
+final class StocksViewController: UIViewController{
 
    private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -18,7 +18,7 @@ final class StocksViewController: UIViewController {
     
        tableView.register(StockCell.self, forCellReuseIdentifier:StockCell.typeName)
        
-       
+    
         return tableView
     }()
     
@@ -31,6 +31,8 @@ final class StocksViewController: UIViewController {
         setupSubview()
         
         tableView.dataSource = self
+        tableView.delegate = self
+    
     }
     
     private func setupSubview(){
@@ -43,20 +45,36 @@ final class StocksViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
 
 
 }
 
-extension StocksViewController: UITableViewDataSource {
+extension StocksViewController: UITableViewDataSource ,UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.typeName, for: indexPath) as! StockCell
-        
+        cell.setBackgroundColor(for: indexPath.row)
         return cell
     }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
+   
+  
+    
+   
+   
+
+    
+  
+
+   
+    
+ 
     
 }
 
