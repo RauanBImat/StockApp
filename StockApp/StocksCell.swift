@@ -40,12 +40,13 @@ final class StockCell: UITableViewCell {
         return view
     }()
     
-    private lazy var star: UIImageView = {
-       let image = UIImageView()
+    private lazy var star: UIButton = {
+       let image = UIButton()
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         
-        image.image = UIImage(named: "Path")
+        image.setImage(UIImage(named: "Path.png"), for: .normal)
+
         
         return image
     }()
@@ -165,6 +166,8 @@ final class StockCell: UITableViewCell {
             
             star.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor,constant: 6),
             star.topAnchor.constraint(equalTo: elementsView.topAnchor,constant: 17),
+            star.heightAnchor.constraint(equalToConstant: 16),
+            star.widthAnchor.constraint(equalToConstant: 16),
             
             elementsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             elementsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
