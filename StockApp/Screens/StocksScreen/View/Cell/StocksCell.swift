@@ -24,7 +24,7 @@ final class StockCell: UITableViewCell {
     private lazy var symbolLabel: UILabel = {
         let label = UILabel()
         label.text = "YNDX"
-        label.font = UIFont.Bold(size: 18)
+        label.font = UIFont.bold(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         
@@ -32,13 +32,7 @@ final class StockCell: UITableViewCell {
         return label
     }()
     
-    private lazy var  backgroundCell: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        view.layer.cornerRadius = 20
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+
     
     private lazy var star: UIButton = {
        let image = UIButton()
@@ -54,7 +48,7 @@ final class StockCell: UITableViewCell {
     private lazy var companyLabel: UILabel = {
         let label = UILabel()
         label.text = "Yandex, LLC"
-        label.font = UIFont.SemiBold(size: 12)
+        label.font = UIFont.semiBold(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -63,7 +57,7 @@ final class StockCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.text = "4 764,6 ₽"
-        label.font = UIFont.SemiBold(size: 18)
+        label.font = UIFont.semiBold(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -72,44 +66,32 @@ final class StockCell: UITableViewCell {
     private lazy var procentLabel: UILabel = {
         let label = UILabel()
         label.text = "+55 ₽ (1,15%)"
-        label.textColor = UIColor(red: 36 / 255,
-                                  green: 178 / 255,
-                                  blue: 93 / 255,
-                                  alpha: 1)
-        label.font = UIFont.SemiBold(size: 12)
+        label.textColor = UIColor.green1
+        label.font = UIFont.semiBold(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     private lazy var elementsView: UIView = {
-            let view = UIView()
-            view.layer.cornerRadius = 16
-            view.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
 
-            return view
+        return view
         }()
     
     
     func setBackgroundColor(for row: Int) {
-      elementsView.backgroundColor = row % 2 == 0
-        ? UIColor(red: 240 / 255,
-                  green: 244 / 255,
-                  blue: 247 / 255,
-                  alpha: 1)
+        elementsView.backgroundColor = row % 2 == 0
+        ? UIColor.gray1
       : UIColor.white
         
-       elementsView.layer.cornerRadius = 16
     }
 
     
 
-//
-//    override func layoutSubviews() {
-//            super.layoutSubviews()
-//            //set the values for top,left,bottom,right margins
-//        contentView.frame = frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
-//        }
+
   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -121,6 +103,11 @@ final class StockCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    func configure(with stock: Stock){
+        symbolLabel.text = stock.symbol
+        companyLabel.text = stock.name
+        priceLabel.text = "\(stock.price)"
+    }
     
     private func setupViews() {
         contentView.addSubview(elementsView)
@@ -129,7 +116,6 @@ final class StockCell: UITableViewCell {
         elementsView.addSubview(companyLabel)
         elementsView.addSubview(priceLabel)
         elementsView.addSubview(procentLabel)
-        elementsView.addSubview(backgroundCell)
         elementsView.addSubview(star)
 
         

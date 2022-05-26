@@ -10,18 +10,36 @@ import UIKit
 
 extension UIFont {
     
-    static func Regular(size: CGFloat) -> UIFont {
-        return UIFont(name: "Montserrat-Regular", size: size)!
+    
+    static func regular(size: CGFloat) -> UIFont {
+        guard let font = UIFont(name: "Montserrat-Regular", size: size) else {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
+        }
+
+        return font
+
     }
     
-    static func Bold(size: CGFloat) -> UIFont {
-            return UIFont(name: "Montserrat-Bold", size: size)!
+    static func bold(size: CGFloat) -> UIFont {
+        guard let font = UIFont(name: "Montserrat-Bold", size: size) else {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
+        }
+        return font
+
         }
     
-    static func Medium(size: CGFloat) -> UIFont {
-            return UIFont(name: "Montserrat-Medium", size: size)!
+    static func medium(size: CGFloat) -> UIFont {
+        guard let font = UIFont(name: "Montserrat-Medium", size: size) else {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
         }
-    static func SemiBold(size: CGFloat) -> UIFont {
-            return UIFont(name: "Montserrat-SemiBold", size: size)!
+        return font
+
+        }
+    static func semiBold(size: CGFloat) -> UIFont {
+        guard let font = UIFont(name: "Montserrat-SemiBold", size: size) else {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
+        }
+        return font
+
         }
 }
