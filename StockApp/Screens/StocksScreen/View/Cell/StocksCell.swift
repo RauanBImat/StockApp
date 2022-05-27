@@ -66,7 +66,7 @@ final class StockCell: UITableViewCell {
     private lazy var procentLabel: UILabel = {
         let label = UILabel()
         label.text = "+55 ₽ (1,15%)"
-        label.textColor = UIColor.green1
+        label.textColor = UIColor.backgroundGreen
         label.font = UIFont.semiBold(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -84,11 +84,12 @@ final class StockCell: UITableViewCell {
     
     func setBackgroundColor(for row: Int) {
         elementsView.backgroundColor = row % 2 == 0
-        ? UIColor.gray1
+        ? UIColor.backgroundGray
       : UIColor.white
         
     }
 
+ 
     
 
 
@@ -104,12 +105,24 @@ final class StockCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func configure(with stock: Stock){
-        symbolLabel.text = stock.symbol
+        
+        symbolLabel.text = stock.symbol.uppercased()
         companyLabel.text = stock.name
-        priceLabel.text = "\(stock.price)"
+        priceLabel.text = Double.checkDecimal(check: stock.price)
+        
+        if stock.change >= 0.0 {
+            procentLabel.text = "+" + Double.checkDecimal(check: stock.change)
+            procentLabel.textColor = .backgroundGreen
+            } else {
+            procentLabel.text = Double.checkDecimal(check: stock.change)
+            procentLabel.textColor = .red
+            }
+            
     }
     
+    
     private func setupViews() {
+        selectionStyle = .none
         contentView.addSubview(elementsView)
         elementsView.addSubview(iconView)
         elementsView.addSubview(symbolLabel)

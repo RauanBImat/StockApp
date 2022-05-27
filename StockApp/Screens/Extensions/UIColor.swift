@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 extension UIColor{
-    static let gray1 = UIColor(red: 240 / 255,
+    static let backgroundGray = UIColor(red: 240 / 255,
                        green: 244 / 255,
                        blue: 247 / 255,
                        alpha: 1)
     
-    static let green1 = UIColor(red: 36 / 255,
+    static let backgroundGreen = UIColor(red: 36 / 255,
                                 green: 178 / 255,
                                 blue: 93 / 255,
                                 alpha: 1)

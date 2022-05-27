@@ -12,6 +12,7 @@ final class StocksViewController: UIViewController{
     private var stocks: [Stock] = []
     
     
+    
    private lazy var tableView: UITableView = {
         let tableView = UITableView()
        tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,18 +28,24 @@ final class StocksViewController: UIViewController{
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        
+        super.viewDidLoad()
+      
         view.backgroundColor = .white
         setupSubview()
+        
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        getStock()
+        getStocks()
+        
+
     
     }
+   
+ 
     
     private func setupSubview(){
         
@@ -50,52 +57,26 @@ final class StocksViewController: UIViewController{
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    private func getStock() {
-        
-        let session = URLSession(configuration: .default)
-        let urlString = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100"
-        guard let url = URL(string: urlString) else { return }
-        let task = session.dataTask(with: url, completionHandler: {[weak self] data,response,error in
-            if let error = error {
-                print("Error - " , error.localizedDescription)
-            }
-            guard let response = response as? HTTPURLResponse else {
-                return
-
-            }
-            print("Status code - ", response.statusCode)
+    private func getStocks() {
+            let client = Network()
+            let service: StocksServiceProtocol = StocksService(client: client)
             
-            guard let data = data else {
-                return
+            service.getStocks { result in
+                switch result {
+                case .success(let stocks):
+                    self.stocks = stocks
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    self.showError(error.localizedDescription)
+                }
             }
-            print("Data",data)
+        }
+        
+        func showError(_ message: String) {
             
-            
-           
-            
-            guard let json = try? JSONDecoder().decode([Stock].self, from: data) else {
-                return
-            }
-            DispatchQueue.main.async {
-                self?.stocks = json
-                self?.tableView.reloadData()
-            }
-        })
-        
-        
-        
-        task.resume()
-        
-        
-        
-        
-        
-        
+        }
     }
-    
-
-
-}
+        
 
 extension StocksViewController: UITableViewDataSource ,UITableViewDelegate {
     
@@ -106,6 +87,14 @@ extension StocksViewController: UITableViewDataSource ,UITableViewDelegate {
         cell.configure(with: stocks[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            guard let cell = tableView.cellForRow(at: indexPath) as? StockCell else{ return }
+            let detailStockVC = DetailStockViewController()
+            detailStockVC.configure(with: stocks[indexPath.row])
+            navigationController?.pushViewController(detailStockVC, animated: true)
+        }
+
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stocks.count
