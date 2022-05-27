@@ -90,7 +90,7 @@ extension StocksViewController: UITableViewDataSource ,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             guard let cell = tableView.cellForRow(at: indexPath) as? StockCell else{ return }
-            let detailStockVC = DetailStockViewController()
+            let detailStockVC = DetailsStockViewController()
             detailStockVC.configure(with: stocks[indexPath.row])
             navigationController?.pushViewController(detailStockVC, animated: true)
         }

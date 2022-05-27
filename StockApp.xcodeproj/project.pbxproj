@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57A664FF284104C700508FC4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A664FE284104C700508FC4 /* DetailsViewController.swift */; };
 		57CA4B48283D605200D89368 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */; };
 		57CA4B4A283D610100D89368 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B49283D610100D89368 /* UIFont.swift */; };
 		57CA4B4C283D61BF00D89368 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */; };
@@ -22,7 +23,6 @@
 		57CA4B6C284068D200D89368 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B6B284068D200D89368 /* FavoriteViewController.swift */; };
 		57CA4B6E2840690800D89368 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B6D2840690800D89368 /* SearchViewController.swift */; };
 		57CA4B702840CC6900D89368 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B6F2840CC6900D89368 /* Double.swift */; };
-		57CA4B742840F9C800D89368 /* DetailStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B732840F9C800D89368 /* DetailStockViewController.swift */; };
 		57E9E054283CB52100B84069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9E053283CB52100B84069 /* AppDelegate.swift */; };
 		57E9E058283CB52100B84069 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9E057283CB52100B84069 /* StocksViewController.swift */; };
 		57E9E05D283CB52300B84069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E9E05C283CB52300B84069 /* Assets.xcassets */; };
@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57A664FE284104C700508FC4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		57CA4B49283D610100D89368 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		57CA4B6B284068D200D89368 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		57CA4B6D2840690800D89368 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		57CA4B6F2840CC6900D89368 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		57CA4B732840F9C800D89368 /* DetailStockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailStockViewController.swift; path = ../../../../../Downloads/DetailStockViewController.swift; sourceTree = "<group>"; };
 		57E9E050283CB52100B84069 /* StockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E9E053283CB52100B84069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E9E057283CB52100B84069 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57A664FD284104B200508FC4 /* DetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				57A664FE284104C700508FC4 /* DetailsViewController.swift */,
+			);
+			path = DetailsScreen;
+			sourceTree = "<group>";
+		};
 		57CA4B46283D5FF700D89368 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,7 +89,6 @@
 		57CA4B51283F7C9F00D89368 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				57CA4B722840F9B000D89368 /* DetailsScreen */,
 				57CA4B712840D47500D89368 /* Extensions */,
 				57CA4B57283F7D2400D89368 /* Service */,
 				57CA4B52283F7CAF00D89368 /* StocksScreen */,
@@ -171,14 +178,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		57CA4B722840F9B000D89368 /* DetailsScreen */ = {
-			isa = PBXGroup;
-			children = (
-				57CA4B732840F9C800D89368 /* DetailStockViewController.swift */,
-			);
-			path = DetailsScreen;
-			sourceTree = "<group>";
-		};
 		57E9E047283CB52100B84069 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +197,7 @@
 		57E9E052283CB52100B84069 /* StockApp */ = {
 			isa = PBXGroup;
 			children = (
+				57A664FD284104B200508FC4 /* DetailsScreen */,
 				57CA4B51283F7C9F00D89368 /* Screens */,
 				57CA4B46283D5FF700D89368 /* font */,
 				57E9E053283CB52100B84069 /* AppDelegate.swift */,
@@ -284,7 +284,6 @@
 			files = (
 				57CA4B66283FD0AA00D89368 /* NetworkService.swift in Sources */,
 				57CA4B4A283D610100D89368 /* UIFont.swift in Sources */,
-				57CA4B742840F9C800D89368 /* DetailStockViewController.swift in Sources */,
 				57CA4B5F283FB6EE00D89368 /* NetworkError.swift in Sources */,
 				57CA4B63283FD06000D89368 /* StocksService.swift in Sources */,
 				57CA4B6A284063DB00D89368 /* TabBarViewController.swift in Sources */,
@@ -297,6 +296,7 @@
 				57CA4B6C284068D200D89368 /* FavoriteViewController.swift in Sources */,
 				57CA4B6E2840690800D89368 /* SearchViewController.swift in Sources */,
 				57CA4B5B283F968E00D89368 /* UIColor.swift in Sources */,
+				57A664FF284104C700508FC4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
