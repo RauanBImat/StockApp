@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol Router {
     typealias Headers = [String: String]
     typealias Parameters = [String: Any]
@@ -41,9 +40,11 @@ extension Router {
 extension Router {
     func request() throws -> URLRequest {
         let urlString = baseUrl + path
+        
         guard let url = URL(string: urlString) else {
             throw NetworkError.missingURL
         }
+        
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
         request.httpMethod = method.rawValue
         request.httpBody = httpBody

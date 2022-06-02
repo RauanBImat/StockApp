@@ -8,6 +8,8 @@
 import UIKit
 
 final class StockCell: UITableViewCell {
+    
+    private var favoriteAction: (() -> Void)?
     private lazy var iconView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -34,15 +36,13 @@ final class StockCell: UITableViewCell {
     
 
     
-    private lazy var star: UIButton = {
-       let image = UIButton()
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        
-        image.setImage(UIImage(named: "Path.png"), for: .normal)
-
-        
-        return image
+    private lazy var favoriteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Path"), for: .normal)
+        button.setImage(UIImage(named: "Path"), for: .selected)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(favoriteButtonTap), for: .touchUpInside)
+        return button
     }()
     
     private lazy var companyLabel: UILabel = {
@@ -104,19 +104,17 @@ final class StockCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func configure(with stock: Stock){
+    func configure(with model: StockModelProtocol){
         
-        symbolLabel.text = stock.symbol.uppercased()
-        companyLabel.text = stock.name
-        priceLabel.text = Double.checkDecimal(check: stock.price)
-        
-        if stock.change >= 0.0 {
-            procentLabel.text = "+" + Double.checkDecimal(check: stock.change)
-            procentLabel.textColor = .backgroundGreen
-            } else {
-            procentLabel.text = Double.checkDecimal(check: stock.change)
-            procentLabel.textColor = .red
-            }
+        symbolLabel.text = model.symbol.uppercased()
+        companyLabel.text = model.name
+        priceLabel.text = model.price
+        procentLabel.text = model.change
+        procentLabel.textColor = model.changeColor
+        favoriteButton.isSelected = model.isFavotite
+        favoriteAction = {
+            model.setFavorite()
+        }
             
     }
     
@@ -129,7 +127,7 @@ final class StockCell: UITableViewCell {
         elementsView.addSubview(companyLabel)
         elementsView.addSubview(priceLabel)
         elementsView.addSubview(procentLabel)
-        elementsView.addSubview(star)
+        elementsView.addSubview(favoriteButton)
 
         
 
@@ -138,6 +136,11 @@ final class StockCell: UITableViewCell {
         
         
         setupConstraints()
+    }
+    
+    @objc private func favoriteButtonTap() {
+        favoriteButton.isSelected.toggle()
+        favoriteAction?()
     }
     
     private  func setupConstraints(){
@@ -163,10 +166,10 @@ final class StockCell: UITableViewCell {
             procentLabel.trailingAnchor.constraint(equalTo: elementsView.trailingAnchor,constant: -12),
             procentLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor),
             
-            star.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor,constant: 6),
-            star.topAnchor.constraint(equalTo: elementsView.topAnchor,constant: 17),
-            star.heightAnchor.constraint(equalToConstant: 16),
-            star.widthAnchor.constraint(equalToConstant: 16),
+            favoriteButton.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor,constant: 6),
+            favoriteButton.topAnchor.constraint(equalTo: elementsView.topAnchor,constant: 17),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 16),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 16),
             
             elementsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             elementsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
