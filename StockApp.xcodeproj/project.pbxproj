@@ -22,6 +22,8 @@
 		578BCF7328492AB800CFF094 /* DetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF6D28492AB800CFF094 /* DetailTitleView.swift */; };
 		578BCF7428492AB800CFF094 /* ChartsResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF6F28492AB800CFF094 /* ChartsResponce.swift */; };
 		578BCF7528492AB800CFF094 /* ChartsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF7028492AB800CFF094 /* ChartsService.swift */; };
+		578BCF7A284A34C700CFF094 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF79284A34C700CFF094 /* FavoriteViewController.swift */; };
+		578BCF7C284A34D900CFF094 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */; };
 		57CA4B48283D605200D89368 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */; };
 		57CA4B4A283D610100D89368 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B49283D610100D89368 /* UIFont.swift */; };
 		57CA4B4C283D61BF00D89368 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */; };
@@ -57,6 +59,8 @@
 		578BCF6D28492AB800CFF094 /* DetailTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTitleView.swift; sourceTree = "<group>"; };
 		578BCF6F28492AB800CFF094 /* ChartsResponce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsResponce.swift; sourceTree = "<group>"; };
 		578BCF7028492AB800CFF094 /* ChartsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsService.swift; sourceTree = "<group>"; };
+		578BCF79284A34C700CFF094 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		57CA4B49283D610100D89368 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
@@ -164,6 +168,31 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		578BCF762849FCF500CFF094 /* StockFavoriteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				578BCF782849FD0E00CFF094 /* View */,
+				578BCF772849FD0600CFF094 /* Presenter */,
+			);
+			path = StockFavoriteScreen;
+			sourceTree = "<group>";
+		};
+		578BCF772849FD0600CFF094 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		578BCF782849FD0E00CFF094 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				578BCF79284A34C700CFF094 /* FavoriteViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		57CA4B46283D5FF700D89368 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +207,7 @@
 		57CA4B51283F7C9F00D89368 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				578BCF762849FCF500CFF094 /* StockFavoriteScreen */,
 				578BCF6828492AB800CFF094 /* StockDetailScreen */,
 				57CA4B52283F7CAF00D89368 /* StocksScreen */,
 			);
@@ -377,6 +407,7 @@
 				578BCF362848C81400CFF094 /* StockResponse.swift in Sources */,
 				57CA4B4A283D610100D89368 /* UIFont.swift in Sources */,
 				578BCF3A2848D14000CFF094 /* Assembly.swift in Sources */,
+				578BCF7C284A34D900CFF094 /* FavoritePresenter.swift in Sources */,
 				57CA4B5F283FB6EE00D89368 /* NetworkError.swift in Sources */,
 				57CA4B63283FD06000D89368 /* StocksService.swift in Sources */,
 				57E9E068283CBC4B00B84069 /* StocksCell.swift in Sources */,
@@ -393,6 +424,7 @@
 				578BCF7428492AB800CFF094 /* ChartsResponce.swift in Sources */,
 				578BCF5728491FA100CFF094 /* UserDefaultsFavoritesService.swift in Sources */,
 				57CA4B5B283F968E00D89368 /* UIColor.swift in Sources */,
+				578BCF7A284A34C700CFF094 /* FavoriteViewController.swift in Sources */,
 				578BCF3228476D4B00CFF094 /* StocksPresenter.swift in Sources */,
 				578BCF7528492AB800CFF094 /* ChartsService.swift in Sources */,
 				578BCF382848C84800CFF094 /* NSObject+Ext.swift in Sources */,

@@ -39,7 +39,7 @@ final class StockCell: UITableViewCell {
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Path"), for: .normal)
-        button.setImage(UIImage(named: "Path"), for: .selected)
+        button.setImage(UIImage(named: "Path2"), for: .selected)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(favoriteButtonTap), for: .touchUpInside)
         return button

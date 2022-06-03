@@ -87,7 +87,7 @@ final class StockDetailViewController: UIViewController {
     private func setupFavoriteButton() {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "Star"), for: .normal)
-        button.setImage(UIImage(named: "Star"), for: .selected)
+        button.setImage(UIImage(named: "Path2"), for: .selected)
         button.isSelected = presenter.favoriteButtonIsSelected
         button.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
         button.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)

@@ -28,8 +28,15 @@ final class Assembly {
         return view
     }
     
+    private func favoriteModule() -> UIViewController{
+        let presenter = FavoritePresenter()
+        let view = FavoriteViewController(presenter: presenter)
+        
+        return view
+    }
+    
     func secondVC() -> UIViewController {
-        UIViewController()
+        favoriteModule()
     }
     
     func thirdVC() -> UIViewController {

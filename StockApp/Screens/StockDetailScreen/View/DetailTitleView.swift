@@ -67,10 +67,6 @@ final class DetailTitleView: UIView {
         nameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor).isActive = true
         nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        
-       
-     
-      
-        
+    
     }
 }
