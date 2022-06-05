@@ -7,26 +7,103 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+final class FavoriteViewController: UIViewController {
 
     
     private let presenter: FavoritePresenterProtocol
     
     init(presenter: FavoritePresenterProtocol) {
         self.presenter = presenter
-        
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+ 
+    private lazy var tableView: UITableView = {
+       let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemBackground
+        tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.typeName)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+       return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupVeiw()
+        setupSubview()
         presenter.loadView()
+    }
+    
+    private func setupVeiw() {
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Favorites"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+    }
+    private func setupSubview() {
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    private func showError(_ message: String) {
+        
+    }
+}
 
+
+extension FavoriteViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.typeName, for: indexPath) as? StockCell else { return UITableViewCell() }
+        cell.setBackgroundColor(for: indexPath.row)
+        return cell
+    }
+}
+
+extension FavoriteViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+}
+
+extension FavoriteViewController: FavoriteViewProtocol {
+  
+    
+    func updateView() {
+        tableView.reloadData()
+    }
+    
+    func updateView(withLoader isLoading: Bool) {
+        
+    }
+    
+    func updateView(withError message: String) {
+        
+    }
+    
+    func updateCell(for indexPath: IndexPath, state: Bool) {
+        state
+        ? tableView.insertRows(at: [indexPath], with: .automatic)
+        : tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     

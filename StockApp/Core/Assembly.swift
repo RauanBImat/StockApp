@@ -28,16 +28,14 @@ final class Assembly {
         return view
     }
     
-    private func favoriteModule() -> UIViewController{
-        let presenter = FavoritePresenter()
-        let view = FavoriteViewController(presenter: presenter)
-        
-        return view
+    private func favoriteModule() -> UIViewController {
+        let presenter = FavoritePresenter(service: stocksService)
+        let favoritesVC = FavoriteViewController(presenter: presenter)
+        presenter.viewController = favoritesVC
+        return favoritesVC
     }
     
-    func secondVC() -> UIViewController {
-        favoriteModule()
-    }
+    
     
     func thirdVC() -> UIViewController {
         UIViewController()
@@ -50,13 +48,13 @@ final class Assembly {
             let stocksVC = UINavigationController(rootViewController: stocksModule())
             stocksVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "diagram"), tag: 0)
             
-            let secondVC = secondVC()
-            secondVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Icon"), tag: 1)
+            let favoriteVC = UINavigationController(rootViewController: favoriteModule())
+            favoriteVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Icon"), tag: 1)
             
             let thirdVC = thirdVC()
             thirdVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Search") , tag: 2)
             
-            tabbar.viewControllers = [stocksVC, secondVC, thirdVC]
+            tabbar.viewControllers = [stocksVC, favoriteVC, thirdVC]
             tabbar.tabBarItem.imageInsets = .init(top: 5, left: 0, bottom: -5, right: 0)
             tabbar.tabBar.barTintColor = .white
             return tabbar

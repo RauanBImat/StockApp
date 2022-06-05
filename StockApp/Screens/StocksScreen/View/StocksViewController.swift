@@ -44,7 +44,7 @@ final class StocksViewController: UIViewController {
     
     private func setupView() {
         navigationItem.title = "Stocks"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }
