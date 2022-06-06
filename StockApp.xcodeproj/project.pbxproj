@@ -24,6 +24,8 @@
 		578BCF7528492AB800CFF094 /* ChartsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF7028492AB800CFF094 /* ChartsService.swift */; };
 		578BCF7A284A34C700CFF094 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF79284A34C700CFF094 /* FavoriteViewController.swift */; };
 		578BCF7C284A34D900CFF094 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */; };
+		57A28431284DB358008C7A3C /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 57A28430284DB358008C7A3C /* Charts */; };
+		57A28433284DB5E7008C7A3C /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A28432284DB5E7008C7A3C /* ChartsView.swift */; };
 		57CA4B48283D605200D89368 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */; };
 		57CA4B4A283D610100D89368 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CA4B49283D610100D89368 /* UIFont.swift */; };
 		57CA4B4C283D61BF00D89368 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */; };
@@ -61,6 +63,7 @@
 		578BCF7028492AB800CFF094 /* ChartsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsService.swift; sourceTree = "<group>"; };
 		578BCF79284A34C700CFF094 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		57A28432284DB5E7008C7A3C /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		57CA4B47283D605200D89368 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		57CA4B49283D610100D89368 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		57CA4B4B283D61BF00D89368 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A28431284DB358008C7A3C /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +139,7 @@
 		578BCF6828492AB800CFF094 /* StockDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
+				57A28436284DF226008C7A3C /* Model */,
 				578BCF6928492AB800CFF094 /* Presenter */,
 				578BCF6B28492AB800CFF094 /* View */,
 				578BCF6E28492AB800CFF094 /* Service */,
@@ -155,6 +160,7 @@
 			children = (
 				578BCF6C28492AB800CFF094 /* StockDetailViewController.swift */,
 				578BCF6D28492AB800CFF094 /* DetailTitleView.swift */,
+				57A28432284DB5E7008C7A3C /* ChartsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +197,13 @@
 				578BCF79284A34C700CFF094 /* FavoriteViewController.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		57A28436284DF226008C7A3C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		57CA4B46283D5FF700D89368 /* font */ = {
@@ -343,6 +356,9 @@
 			dependencies = (
 			);
 			name = StockApp;
+			packageProductDependencies = (
+				57A28430284DB358008C7A3C /* Charts */,
+			);
 			productName = StockApp;
 			productReference = 57E9E050283CB52100B84069 /* StockApp.app */;
 			productType = "com.apple.product-type.application";
@@ -371,6 +387,9 @@
 				Base,
 			);
 			mainGroup = 57E9E047283CB52100B84069;
+			packageReferences = (
+				57A2842F284DB358008C7A3C /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 57E9E051283CB52100B84069 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -410,6 +429,7 @@
 				578BCF7C284A34D900CFF094 /* FavoritePresenter.swift in Sources */,
 				57CA4B5F283FB6EE00D89368 /* NetworkError.swift in Sources */,
 				57CA4B63283FD06000D89368 /* StocksService.swift in Sources */,
+				57A28433284DB5E7008C7A3C /* ChartsView.swift in Sources */,
 				57E9E068283CBC4B00B84069 /* StocksCell.swift in Sources */,
 				578BCF5328491F6900CFF094 /* FavoriteService.swift in Sources */,
 				578BCF3428476D9E00CFF094 /* StocksModel.swift in Sources */,
@@ -634,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57A2842F284DB358008C7A3C /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57A28430284DB358008C7A3C /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57A2842F284DB358008C7A3C /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57E9E048283CB52100B84069 /* Project object */;
 }

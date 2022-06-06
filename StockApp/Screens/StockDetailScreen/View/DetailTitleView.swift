@@ -30,13 +30,7 @@ final class DetailTitleView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-   
-    
-   
-    
-   
-    
+       
     override init(frame: CGRect) {
         super.init(frame: frame)
         

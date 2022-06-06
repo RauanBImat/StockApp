@@ -2,7 +2,6 @@
 //  StockDetailViewController.swift
 //  StocksApp
 //
-//  Created by Aimukhambetov Zhassulan on 30.05.2022.
 //
 
 import UIKit
@@ -11,6 +10,12 @@ final class StockDetailViewController: UIViewController {
     private lazy var titleView: UIView = {
         let view = DetailTitleView()
         view.configure(with: presenter.titleModel)
+        return view
+    }()
+    
+    private lazy var chartsContainerView: ChartsContainerView = {
+        let view = ChartsContainerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -44,6 +49,19 @@ final class StockDetailViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(priceStackView)
+        view.addSubview(chartsContainerView)
+        view.addSubview(buyButton)
+        
+        
+        chartsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        chartsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        chartsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 150).isActive = true
+        
+        buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20).isActive = true
+        buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16).isActive = true
+        buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16).isActive = true
+        buyButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
+        buyButton.widthAnchor.constraint(equalToConstant: 328).isActive = true
     }
     
     private func setupNavigationBar() {
@@ -66,6 +84,17 @@ final class StockDetailViewController: UIViewController {
         label.textColor = UIColor.backgroundGreen
         return label
     }()
+    private lazy var buyButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Buy for", for: .normal)
+        button.titleLabel?.font = .semiBold(size: 16)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 16
+        button.layer.cornerCurve = .continuous
+        button.addTarget(self, action: #selector(buybutton), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var priceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [priceLabel, procentLabel])
@@ -82,6 +111,8 @@ final class StockDetailViewController: UIViewController {
             priceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             priceStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 63)
         ])
+        
+        
     }
     
     private func setupFavoriteButton() {
@@ -93,11 +124,20 @@ final class StockDetailViewController: UIViewController {
         button.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
+
     
     @objc
     private func favoriteTapped(_ sender: UIButton) {
         sender.isSelected.toggle()
         presenter.favoriteButtonTapped()
+    }
+    @objc
+    private func buybutton(_ sender: UIButton){
+        let aletController = UIAlertController(title: "Thanks!🥳", message: "Purchase successful🎉🎉", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default)
+        
+        aletController.addAction(action)
+        self.present(aletController, animated: true,completion: nil)
     }
     
     @objc
@@ -108,7 +148,7 @@ final class StockDetailViewController: UIViewController {
 
 extension StockDetailViewController: StockDetailViewProtocol {
     func updateView(withLoader isLoading: Bool) {
-        
+        chartsContainerView.configure(with: isLoading)
     }
     
     func updateView(withError message: String) {
@@ -116,6 +156,9 @@ extension StockDetailViewController: StockDetailViewProtocol {
     }
     
     func updateView() {
+        chartsContainerView.configure(with: ChartsModel())
         priceLabel.text = presenter.price
+        procentLabel.text = presenter.procent
+        buyButton.setTitle("Buy for " + presenter.price, for: .normal)
     }
 }

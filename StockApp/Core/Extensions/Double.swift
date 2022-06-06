@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Double{
+extension Double {
     
     private func rounded(digits: Int) -> Double {
            let multiplier = pow(10.0, Double(digits))

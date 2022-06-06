@@ -18,6 +18,7 @@ protocol StockDetailPresenterProtocol {
     var titleModel: DetailTitleView.TilteModel { get }
     var favoriteButtonIsSelected: Bool { get }
     var price: String { get }
+    var procent: String { get }
     
     func loadView()
     func favoriteButtonTapped()
@@ -27,8 +28,11 @@ final class StockDetailPresenter: StockDetailPresenterProtocol {
     private let model: StockModelProtocol
     private let service: ChartsServiceProtocol
     var price: String {
-            model.price
-        }
+        model.price
+    }
+    var procent: String{
+        model.change
+    }
     
     weak var view: StockDetailViewProtocol?
     

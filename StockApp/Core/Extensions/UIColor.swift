@@ -22,5 +22,6 @@ extension UIColor{
     static var selectionColor: UIColor {
         .gray.withAlphaComponent(0.3)
     }
+    static var buttonColor =  UIColor(red:248/255,green: 244/255,blue: 247/255,alpha: 1)
 
 }
