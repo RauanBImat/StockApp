@@ -18,5 +18,9 @@ extension UIColor{
                                 green: 178 / 255,
                                 blue: 93 / 255,
                                 alpha: 1)
+    
+    static var selectionColor: UIColor {
+        .gray.withAlphaComponent(0.3)
+    }
 
 }

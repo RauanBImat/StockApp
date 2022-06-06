@@ -16,11 +16,15 @@ protocol StocksServiceProtocol {
     func getStocks(currency: String, count: String, completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getStocks(currency: String, completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getStocks(completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
+    func getFavoriteStocks() -> [StockModelProtocol]
+
 }
 
 final class StocksService: StocksServiceProtocol {
 
     private let network: NetworkService
+    private var stocksModels: [StockModelProtocol] = []
+
     
     init(network: NetworkService) {
         self.network = network
@@ -38,9 +42,16 @@ final class StocksService: StocksServiceProtocol {
         }
     }
     
+    
     private func stockModels(for stocks: [Stock]) -> [StockModelProtocol] {
-        stocks.map { StockModel(stock: $0) }
+        stocksModels = stocks.map { StockModel(stock: $0) }
+        return stocksModels
     }
+    
+    func getFavoriteStocks() -> [StockModelProtocol] {
+        stocksModels.filter {$0.isFavotite}
+    }
+    
 }
 
 extension StocksServiceProtocol {

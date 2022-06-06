@@ -16,6 +16,7 @@ final class Assembly {
     private init() {}
 
     private lazy var network: NetworkService = Network()
+    
     private lazy var stocksService: StocksServiceProtocol = StocksService(network: network)
     private lazy var chartsService: ChartsServiceProtocol = ChartsService(network: network)
     
@@ -31,7 +32,7 @@ final class Assembly {
     private func favoriteModule() -> UIViewController {
         let presenter = FavoritePresenter(service: stocksService)
         let favoritesVC = FavoriteViewController(presenter: presenter)
-        presenter.viewController = favoritesVC
+        presenter.view = favoritesVC
         return favoritesVC
     }
     

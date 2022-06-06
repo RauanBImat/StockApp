@@ -79,14 +79,32 @@ final class StockCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
-        }()
-    
+    }()
+
     
     func setBackgroundColor(for row: Int) {
         elementsView.backgroundColor = row % 2 == 0
         ? UIColor.backgroundGray
       : UIColor.white
         
+    }
+    
+    func viewAnimate() {
+        animate()
+    }
+    
+    
+    
+    private func animate() {
+        guard let previousBackgroundColor = elementsView.backgroundColor else { return }
+   
+        UIView.animate(withDuration: 0.1, delay: 0.0, options:[.curveEaseOut], animations: {
+            self.elementsView.backgroundColor = .selectionColor
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn]) {
+                self.elementsView.backgroundColor = previousBackgroundColor
+            }
+        })
     }
 
  
@@ -128,10 +146,8 @@ final class StockCell: UITableViewCell {
         elementsView.addSubview(priceLabel)
         elementsView.addSubview(procentLabel)
         elementsView.addSubview(favoriteButton)
-
         
-
-
+    
 
         
         

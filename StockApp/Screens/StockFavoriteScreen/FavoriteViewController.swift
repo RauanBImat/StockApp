@@ -65,23 +65,25 @@ final class FavoriteViewController: UIViewController {
 
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        presenter.itemsCount
     }
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.typeName, for: indexPath) as? StockCell else { return UITableViewCell() }
         cell.setBackgroundColor(for: indexPath.row)
+        cell.configure(with: presenter.model(for: indexPath))
         return cell
     }
 }
 
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        guard let cell = tableView.cellForRow(at: indexPath) as? StockCell else{ return }
+        cell.viewAnimate()
+        
+        let currentModel = presenter.model(for: indexPath)
+        let detailStockVC = Assembly.assembler.detailVC(model: currentModel)
+        navigationController?.pushViewController(detailStockVC, animated: true)
     }
 }
 
@@ -108,6 +110,5 @@ extension FavoriteViewController: FavoriteViewProtocol {
     
     
     
-
 
 }

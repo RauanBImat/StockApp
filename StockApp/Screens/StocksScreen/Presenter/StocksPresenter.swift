@@ -70,3 +70,5 @@ extension StocksPresenter: FavoritesUpdateServiceProtocol {
         view?.updateCell(for: IndexPath(row: index, section: 0))
     }
 }
+
+
