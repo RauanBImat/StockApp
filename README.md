@@ -7,10 +7,10 @@
 * Autolayout
 
 
+
 **Mini Demo Project**
+![Simulator Screen Recording - iPhone 13 - 2022-06-06 at 13 48 55](https://user-images.githubusercontent.com/55410394/172119274-43df676b-f440-4d8c-a06f-d727800bc695.gif)
 
-
-![Simulator Screen Recording - iPhone 13 - 2022-06-04 at 12 36 09](https://user-images.githubusercontent.com/55410394/171987893-63083d20-a495-43d6-ac3d-2ab39555bc1a.gif)
 
 
 ## Figma Project
