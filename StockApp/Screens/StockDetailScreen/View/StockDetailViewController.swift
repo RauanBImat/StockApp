@@ -52,16 +52,16 @@ final class StockDetailViewController: UIViewController {
         view.addSubview(chartsContainerView)
         view.addSubview(buyButton)
         
-        
-        chartsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        chartsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        chartsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 150).isActive = true
-        
-        buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20).isActive = true
-        buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16).isActive = true
-        buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16).isActive = true
-        buyButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        buyButton.widthAnchor.constraint(equalToConstant: 328).isActive = true
+        NSLayoutConstraint.activate([
+            chartsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chartsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chartsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 150),
+            buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20),
+            buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
+            buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+            buyButton.heightAnchor.constraint(equalToConstant: 56),
+            buyButton.widthAnchor.constraint(equalToConstant: 328)
+        ])
     }
     
     private func setupNavigationBar() {
@@ -73,17 +73,20 @@ final class StockDetailViewController: UIViewController {
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
     }
+    
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = .bold(size: 28)
         return label
     }()
+    
     private lazy var procentLabel: UILabel = {
         let label = UILabel()
         label.font = .semiBold(size: 12)
         label.textColor = UIColor.backgroundGreen
         return label
     }()
+    
     private lazy var buyButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -111,8 +114,6 @@ final class StockDetailViewController: UIViewController {
             priceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             priceStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 63)
         ])
-        
-        
     }
     
     private func setupFavoriteButton() {
@@ -131,6 +132,7 @@ final class StockDetailViewController: UIViewController {
         sender.isSelected.toggle()
         presenter.favoriteButtonTapped()
     }
+    
     @objc
     private func buybutton(_ sender: UIButton){
         let aletController = UIAlertController(title: "Thanks!🥳", message: "Purchase successful🎉🎉", preferredStyle: .alert)

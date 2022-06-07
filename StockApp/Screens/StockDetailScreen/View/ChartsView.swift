@@ -14,7 +14,6 @@ final class ChartsContainerView: UIView {
     private lazy var chartsView: LineChartView  = {
         let view = LineChartView()
         view.translatesAutoresizingMaskIntoConstraints = false
-    
         view.xAxis.drawLabelsEnabled = false
         view.leftAxis.enabled = false
         view.leftAxis.drawGridLinesEnabled = false
@@ -55,34 +54,31 @@ final class ChartsContainerView: UIView {
         loader.isHidden = !isLoading
         buttonStackView.isHidden = isLoading
     }
+    
     func configure(with model : ChartsModel){
-    setCharts(with: [0,1,2,3,45,33,23,22])
-
+        setCharts(with: [0,1,2,3,45,33,23,22])
+        
     }
     
     private func setupSubview() {
         addSubview(chartsView)
         addSubview(buttonStackView)
-        
-        chartsView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        chartsView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        chartsView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        chartsView.heightAnchor.constraint(equalTo: chartsView.widthAnchor,multiplier: 26/36).isActive = true
-        
-        buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
-        buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16).isActive = true
-        buttonStackView.topAnchor.constraint(equalTo: chartsView.bottomAnchor,constant: 40).isActive = true
-        buttonStackView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        
-        addButtons(for: ["W","M","6M","1Y"])
-        
         chartsView.addSubview(loader)
         
-        loader.centerXAnchor.constraint(equalTo: chartsView.centerXAnchor).isActive = true
-        loader.centerYAnchor.constraint(equalTo: chartsView.centerYAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+            chartsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            chartsView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            chartsView.topAnchor.constraint(equalTo: topAnchor),
+            chartsView.heightAnchor.constraint(equalTo: chartsView.widthAnchor,multiplier: 26/36),
+            buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16),
+            buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16),
+            buttonStackView.topAnchor.constraint(equalTo: chartsView.bottomAnchor,constant: 40),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 44),
+            buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            loader.centerXAnchor.constraint(equalTo: chartsView.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: chartsView.centerYAnchor)
+        ])
+        addButtons(for: ["W","M","6M","1Y"])
     }
     
     private func addButtons(for titles: [String]) {
@@ -97,9 +93,6 @@ final class ChartsContainerView: UIView {
             button.layer.cornerCurve = .continuous
             button.addTarget(self, action:#selector(periodButtonTapped), for: .touchUpInside)
             buttonStackView.addArrangedSubview(button)
-            
-            
-
         }
     }
     
@@ -111,6 +104,7 @@ final class ChartsContainerView: UIView {
         sender.backgroundColor = .black
         sender.setTitleColor(.white, for: .normal)
     }
+    
     private func setCharts(with prices: [Double]) {
         var yValues = [ChartDataEntry]()
         for(index,value) in prices.enumerated() {
@@ -129,9 +123,7 @@ final class ChartsContainerView: UIView {
         
         chartsView.data = LineChartData(dataSets: [lineDataSet])
         chartsView.animate(xAxisDuration: 0.3,yAxisDuration: 0.2)
-        
-        
-     }
+    }
     
 }
 struct ChartsModel {}

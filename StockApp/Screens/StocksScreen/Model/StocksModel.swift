@@ -25,7 +25,7 @@ protocol StockModelProtocol {
 final class StockModel: StockModelProtocol {
     private let stock: Stock
     private let favoriteService: FavoritesServiceProtocol
-
+    
     init(stock: Stock) {
         self.stock = stock
         favoriteService = Assembly.assembler.favoritesService
@@ -48,19 +48,19 @@ final class StockModel: StockModelProtocol {
         stock.symbol
     }
     var price: String {
-            "$" + Double.checkDecimal(check: stock.price)
-        }
-        
+        "$" + Double.checkDecimal(check: stock.price)
+    }
+    
     var change: String {
         if stock.change >= 0.0 {
             return "+" + "$" + Double.checkDecimal(check: stock.change)
-        
-            } else {
-                return "$" + Double.checkDecimal(check: stock.change)
-            }
-
+            
+        } else {
+            return "$" + Double.checkDecimal(check: stock.change)
         }
         
+    }
+    
     
     var changeColor: UIColor {
         stock.change >= 0 ? .backgroundGreen : .red
