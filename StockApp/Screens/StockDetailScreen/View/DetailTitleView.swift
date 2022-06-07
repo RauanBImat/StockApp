@@ -50,17 +50,17 @@ final class DetailTitleView: UIView {
     private func setupSubviews() {
         addSubview(symbolLabel)
         addSubview(nameLabel)
-        symbolLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor).isActive = true
-        symbolLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor).isActive = true
-        symbolLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        symbolLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        
-        nameLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor).isActive = true
-        nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-    
+        NSLayoutConstraint.activate([
+            symbolLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
+            symbolLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
+            symbolLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            symbolLabel.topAnchor.constraint(equalTo: topAnchor),
+            
+            nameLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
+            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }

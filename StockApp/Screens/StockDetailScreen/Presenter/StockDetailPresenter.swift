@@ -49,7 +49,6 @@ final class StockDetailPresenter: StockDetailPresenterProtocol {
         self.service = service
     }
     
-    
     func loadView() {
         view?.updateView(withLoader: true)
         service.getCharts(id: model.id) { [weak self] result in

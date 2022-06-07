@@ -126,7 +126,6 @@ final class StockDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
 
-    
     @objc
     private func favoriteTapped(_ sender: UIButton) {
         sender.isSelected.toggle()

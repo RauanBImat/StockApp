@@ -8,7 +8,7 @@
 import UIKit
 
 final class FavoriteViewController: UIViewController {
-
+    
     
     private let presenter: FavoritePresenterProtocol
     
@@ -20,9 +20,9 @@ final class FavoriteViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
+    
     private lazy var tableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemBackground
         tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.typeName)
@@ -31,7 +31,7 @@ final class FavoriteViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-       return tableView
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.itemsCount
     }
-  
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.typeName, for: indexPath) as? StockCell else { return UITableViewCell() }
         cell.setBackgroundColor(for: indexPath.row)
@@ -88,8 +88,6 @@ extension FavoriteViewController: UITableViewDelegate {
 }
 
 extension FavoriteViewController: FavoriteViewProtocol {
-  
-    
     func updateView() {
         tableView.reloadData()
     }
@@ -107,8 +105,4 @@ extension FavoriteViewController: FavoriteViewProtocol {
         ? tableView.insertRows(at: [indexPath], with: .automatic)
         : tableView.deleteRows(at: [indexPath], with: .automatic)
     }
-    
-    
-    
-
 }

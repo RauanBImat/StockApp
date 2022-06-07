@@ -61,12 +61,9 @@ final class StockModel: StockModelProtocol {
         
     }
     
-    
     var changeColor: UIColor {
         stock.change >= 0 ? .backgroundGreen : .red
     }
-    
-    
     
     var isFavotite: Bool = false
     

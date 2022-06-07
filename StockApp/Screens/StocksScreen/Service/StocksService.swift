@@ -17,14 +17,14 @@ protocol StocksServiceProtocol {
     func getStocks(currency: String, completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getStocks(completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getFavoriteStocks() -> [StockModelProtocol]
-
+    
 }
 
 final class StocksService: StocksServiceProtocol {
-
+    
     private let network: NetworkService
     private var stocksModels: [StockModelProtocol] = []
-
+    
     
     init(network: NetworkService) {
         self.network = network

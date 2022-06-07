@@ -38,7 +38,6 @@ final class StocksViewController: UIViewController {
         
         setupView()
         setupSubviews()
-    
         presenter.loadView()
     }
     
@@ -84,6 +83,7 @@ extension StocksViewController: UITableViewDataSource,UITableViewDelegate {
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = Assembly.assembler.detailVC(model: presenter.model(for: indexPath))
         navigationController?.pushViewController(vc, animated: true)
@@ -92,9 +92,5 @@ extension StocksViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.itemsCount
     }
-    
-   
-    
-   
 }
 

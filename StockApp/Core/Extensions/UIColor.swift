@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIColor{
+extension UIColor {
     static let backgroundGray = UIColor(red: 240 / 255,
                        green: 244 / 255,
                        blue: 247 / 255,
