@@ -56,7 +56,7 @@ final class StockModel: StockModelProtocol {
             return "+" + "$" + Double.checkDecimal(check: stock.change)
             
         } else {
-            return "$" + Double.checkDecimal(check: stock.change)
+            return  "$" + Double.checkDecimal(check: stock.change)
         }
         
     }

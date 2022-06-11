@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol StockDetailViewProtocol: AnyObject {
-    func updateView()
+    func updateView(withChartModel chartModel: DetailModel)
     func updateView(withLoader isLoading: Bool)
     func updateView(withError message: String)
 }
@@ -19,7 +20,7 @@ protocol StockDetailPresenterProtocol {
     var favoriteButtonIsSelected: Bool { get }
     var price: String { get }
     var procent: String { get }
-    
+    var change: UIColor { get }
     func loadView()
     func favoriteButtonTapped()
 }
@@ -33,6 +34,10 @@ final class StockDetailPresenter: StockDetailPresenterProtocol {
     var procent: String{
         model.change
     }
+    var change: UIColor{
+        model.changeColor
+    }
+ 
     
     weak var view: StockDetailViewProtocol?
     
@@ -51,11 +56,13 @@ final class StockDetailPresenter: StockDetailPresenterProtocol {
     
     func loadView() {
         view?.updateView(withLoader: true)
-        service.getCharts(id: model.id) { [weak self] result in
+        
+        service.getCharts(id: model.id ) { [weak self] result in
             self?.view?.updateView(withLoader: false)
             switch result {
             case .success(let charts):
-                self?.view?.updateView()
+                let DetailModel = DetailModel.build(from: charts)
+                self?.view?.updateView(withChartModel: DetailModel)
             case .failure(let error):
                 self?.view?.updateView(withError: error.localizedDescription)
             }

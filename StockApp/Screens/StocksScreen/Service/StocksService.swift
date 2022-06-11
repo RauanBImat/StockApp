@@ -17,6 +17,7 @@ protocol StocksServiceProtocol {
     func getStocks(currency: String, completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getStocks(completion: @escaping (Result<[StockModelProtocol], NetworkError>) -> Void)
     func getFavoriteStocks() -> [StockModelProtocol]
+    func getStocks() -> [StockModelProtocol]
     
 }
 
@@ -50,6 +51,10 @@ final class StocksService: StocksServiceProtocol {
     
     func getFavoriteStocks() -> [StockModelProtocol] {
         stocksModels.filter {$0.isFavotite}
+    }
+    
+    func getStocks() -> [StockModelProtocol] {
+        stocksModels
     }
     
 }

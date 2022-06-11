@@ -11,16 +11,21 @@ import Charts
 
 
 final class ChartsContainerView: UIView {
-    private lazy var chartsView: LineChartView  = {
+    private var model: DetailModel?
+    
+    private lazy var chartsView: LineChartView = {
         let view = LineChartView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.xAxis.drawGridLinesEnabled = false
+        view.xAxis.enabled = false
         view.xAxis.drawLabelsEnabled = false
         view.leftAxis.enabled = false
         view.leftAxis.drawGridLinesEnabled = false
         view.rightAxis.enabled = false
-        view.rightAxis.enabled = false
         view.rightAxis.drawGridLinesEnabled = false
-        view.backgroundColor = .white
+        view.legend.setCustom(entries: [])
+        view.backgroundColor = .systemBackground
+        view.doubleTapToZoomEnabled = false
         return view
     }()
     
@@ -43,6 +48,7 @@ final class ChartsContainerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubview()
+        setupMarker()
     }
     
     required init?(coder: NSCoder) {
@@ -55,9 +61,11 @@ final class ChartsContainerView: UIView {
         buttonStackView.isHidden = isLoading
     }
     
-    func configure(with model : ChartsModel){
-        setCharts(with: [0,1,2,3,45,33,23,22])
-        
+    func configure(with model: DetailModel) {
+        self.model = model
+        addButtons(for: model.periods.map {$0.name})
+        setCharts(with: model.periods.first?.prices)
+        periodButtonTapped(sender: buttonStackView.subviews.first as? UIButton ?? UIButton())
     }
     
     private func setupSubview() {
@@ -78,7 +86,12 @@ final class ChartsContainerView: UIView {
             loader.centerXAnchor.constraint(equalTo: chartsView.centerXAnchor),
             loader.centerYAnchor.constraint(equalTo: chartsView.centerYAnchor)
         ])
-        addButtons(for: ["W","M","6M","1Y"])
+    }
+    
+    private func setupMarker() {
+        let marker = ChartMarker()
+        chartsView.marker = marker
+        marker.chartView = chartsView
     }
     
     private func addButtons(for titles: [String]) {
@@ -103,27 +116,56 @@ final class ChartsContainerView: UIView {
         }
         sender.backgroundColor = .black
         sender.setTitleColor(.white, for: .normal)
+        
+        guard let model = model else { return }
+        let period = model.periods[sender.tag]
+        setCharts(with: period.prices)
     }
     
-    private func setCharts(with prices: [Double]) {
-        var yValues = [ChartDataEntry]()
-        for(index,value) in prices.enumerated() {
-            let dataEntry = ChartDataEntry(x: Double(index + 1),y:value)
-            yValues.append(dataEntry)
+    private func setCharts(with prices: [Double]?) {
+        guard let prices = prices else {
+            return
         }
         
-        let lineDataSet = LineChartDataSet(entries: yValues,label: "$")
-        lineDataSet.valueFont = .bold(size: 10)
-        lineDataSet.valueTextColor = .black
-        lineDataSet.fill = Fill(color: UIColor(red: 0.863, green: 0.863, blue: 0.863, alpha: 1))
-        lineDataSet.drawFilledEnabled = true
-        lineDataSet.highlightColor = .black
-        lineDataSet.circleRadius = 3.0
-        lineDataSet.circleHoleRadius = 2.0
+        var yValues = [ChartDataEntry]()
+        for (index, value) in prices.enumerated() {
+            let dataEntry = ChartDataEntry(x: Double(index + 1), y: value)
+            yValues.append(dataEntry)
+        }
+    
+        let lineDataSet = lineCharDataSet(with: yValues)
+        let data = LineChartData(dataSets: [lineDataSet])
+        data.setDrawValues(false)
         
-        chartsView.data = LineChartData(dataSets: [lineDataSet])
-        chartsView.animate(xAxisDuration: 0.3,yAxisDuration: 0.2)
+        chartsView.data = data
+        chartsView.animate(xAxisDuration: 1)
     }
     
+    private func lineCharDataSet(with entries: [ChartDataEntry]) -> LineChartDataSet {
+        let lineDataSet = LineChartDataSet(entries: entries, label: nil)
+        let gradientColors = [UIColor.chartBottomColor.cgColor,
+                              UIColor.chartTopColor.cgColor] as CFArray
+        let colorLocations:[CGFloat] = [0.0, 1.0]
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB() ,
+                                       colors: gradientColors,
+                                       locations: colorLocations)
+        
+        lineDataSet.drawCirclesEnabled = false
+        lineDataSet.valueFont = .boldSystemFont(ofSize: 10)
+        lineDataSet.valueTextColor = .white
+        lineDataSet.drawFilledEnabled = true
+        lineDataSet.circleRadius = 3.0
+        lineDataSet.circleHoleRadius = 2.0
+        lineDataSet.mode = .cubicBezier
+        lineDataSet.lineWidth = 2
+        lineDataSet.setColor(.black)
+        lineDataSet.drawHorizontalHighlightIndicatorEnabled = false
+        lineDataSet.drawVerticalHighlightIndicatorEnabled = false
+        lineDataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
+        lineDataSet.drawFilledEnabled = true
+        return lineDataSet
+    }
+    
+
+    
 }
-struct ChartsModel {}

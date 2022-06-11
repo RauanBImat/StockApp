@@ -36,6 +36,14 @@ final class Assembly {
         return favoritesVC
     }
     
+    private func searchModule() -> UIViewController {
+        let searchService = SearchService(service: stocksService)
+        let presenter = SearchPersenter(service: searchService)
+        let searchVC = SearchViewController(presenter: presenter)
+        presenter.viewController = searchVC
+        return searchVC
+    }
+    
     
     
     func thirdVC() -> UIViewController {
@@ -52,12 +60,13 @@ final class Assembly {
         let favoriteVC = UINavigationController(rootViewController: favoriteModule())
         favoriteVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Icon"), tag: 1)
         
-        let thirdVC = thirdVC()
-        thirdVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Search") , tag: 2)
+        let searchVC = UINavigationController(rootViewController: searchModule())
+        searchVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Search") , tag: 2)
         
-        tabbar.viewControllers = [stocksVC, favoriteVC, thirdVC]
+        tabbar.viewControllers = [stocksVC, favoriteVC, searchVC]
         tabbar.tabBarItem.imageInsets = .init(top: 5, left: 0, bottom: -5, right: 0)
-        tabbar.tabBar.barTintColor = .white
+        tabbar.tabBar.barTintColor = .backgroundGray
+        tabbar.tabBar.backgroundColor = .backgroundGray
         return tabbar
     }
     

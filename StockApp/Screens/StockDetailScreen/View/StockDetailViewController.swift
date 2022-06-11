@@ -55,7 +55,8 @@ final class StockDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             chartsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             chartsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            chartsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 150),
+            chartsContainerView.topAnchor.constraint(equalTo: priceStackView.bottomAnchor),
+            buyButton.topAnchor.constraint(equalTo: chartsContainerView.bottomAnchor,constant: 50),
             buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20),
             buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
             buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
@@ -112,7 +113,7 @@ final class StockDetailViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             priceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            priceStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 63)
+            priceStackView.bottomAnchor.constraint(equalTo: chartsContainerView.topAnchor)
         ])
     }
     
@@ -148,6 +149,7 @@ final class StockDetailViewController: UIViewController {
 }
 
 extension StockDetailViewController: StockDetailViewProtocol {
+
     func updateView(withLoader isLoading: Bool) {
         chartsContainerView.configure(with: isLoading)
     }
@@ -156,10 +158,11 @@ extension StockDetailViewController: StockDetailViewProtocol {
         
     }
     
-    func updateView() {
-        chartsContainerView.configure(with: ChartsModel())
+    func updateView(withChartModel detailModel: DetailModel) {
+        chartsContainerView.configure(with: detailModel)
         priceLabel.text = presenter.price
         procentLabel.text = presenter.procent
+        procentLabel.textColor = presenter.change
         buyButton.setTitle("Buy for " + presenter.price, for: .normal)
     }
 }

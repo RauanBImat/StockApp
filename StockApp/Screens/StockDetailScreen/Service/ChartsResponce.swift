@@ -2,7 +2,7 @@
 //  ChartsResponce.swift
 //  StocksApp
 //
-//  Created by Aimukhambetov Zhassulan on 31.05.2022.
+//  Created by Рауан Бимат on 31.05.2022.
 //
 
 import Foundation
