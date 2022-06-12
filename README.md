@@ -11,7 +11,7 @@
 **Mini Demo Project**
 
 
-![Simulator Screen Recording - iPhone 13 - 2022-06-09 at 14 14 28](https://user-images.githubusercontent.com/55410394/172799531-5c8b2f7c-affb-4064-a8e2-d975e5567299.gif)
+![Simulator Screen Recording - iPhone 13 - 2022-06-12 at 09 26 37](https://user-images.githubusercontent.com/55410394/173213340-7eba97d4-4bd2-471e-978d-23ee911c0d7e.gif)
 
 
 
