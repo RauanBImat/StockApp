@@ -11,8 +11,9 @@ import UIKit
 
 final class SearhView: UIStackView {
     weak var delegate: SearchTextFiledDelegate?
+
     
-    private lazy var searchTextField: UITextField = {
+    public lazy var searchTextField: UITextField = {
         let searchTextField = UITextField()
         searchTextField.delegate = self
         searchTextField.placeholder = "Find Company or ticker"
@@ -30,7 +31,6 @@ final class SearhView: UIStackView {
     private lazy var searchButton: UIButton  = {
         let button = UIButton()
         button.setImage(UIImage(named: "Ellipse"), for: .normal)
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -70,7 +70,7 @@ final class SearhView: UIStackView {
         return label
     }()
 
-    private lazy var infoStackView: UIStackView = {
+    public lazy var infoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel,showMoreButton])
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -131,10 +131,6 @@ final class SearhView: UIStackView {
     
     @objc func editingBegan(_ textField: UITextField) {
         infoStackView.isHidden = false
-    }
-
-    
-    @objc private func backButtonTapped() {
     }
     
     @objc private func clearButtonTapped() {

@@ -15,18 +15,25 @@ protocol SearchTextFiledDelegate: AnyObject {
 protocol SearchStocksPresenterProtocol: SearchTextFiledDelegate {
     var viewController: StocksViewProtocol? { get set }
     var itemCount: Int { get }
+    var namesCount: Int { get }
     func loadView()
     func model(for indexPath: IndexPath) -> StockModelProtocol
+    func getName(for indexPath: IndexPath) -> String
 }
 
 final class SearchPersenter: SearchStocksPresenterProtocol {
     private let searchService:  SearchServiceProtocol
     private var filteredStocks: [StockModelProtocol] = []
     weak var viewController: StocksViewProtocol?
-    
+    private var names: [String] = ["BTC","Apple","Etho"]
+
     init(service: SearchServiceProtocol) {
         self.searchService = service
         startFavoritesNotificationObserving()
+    }
+    
+    var namesCount: Int {
+        names.count
     }
 
     var itemCount: Int {
@@ -40,6 +47,9 @@ final class SearchPersenter: SearchStocksPresenterProtocol {
     
     func model(for indexPath: IndexPath) -> StockModelProtocol {
         filteredStocks[indexPath.row]
+    }
+    func getName(for indexPath: IndexPath) -> String {
+        return names[indexPath.row]
     }
     
 }

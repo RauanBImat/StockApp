@@ -16,7 +16,6 @@
 		578BCF4C2849171F00CFF094 /* StocksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF4B2849171F00CFF094 /* StocksRouter.swift */; };
 		578BCF5328491F6900CFF094 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF5228491F6900CFF094 /* FavoriteService.swift */; };
 		578BCF5528491F8E00CFF094 /* FileManagerFavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF5428491F8E00CFF094 /* FileManagerFavoritesService.swift */; };
-		578BCF5728491FA100CFF094 /* UserDefaultsFavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF5628491FA100CFF094 /* UserDefaultsFavoritesService.swift */; };
 		578BCF5928491FB800CFF094 /* FavoritesUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF5828491FB800CFF094 /* FavoritesUpdateService.swift */; };
 		578BCF7128492AB800CFF094 /* StockDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF6A28492AB800CFF094 /* StockDetailPresenter.swift */; };
 		578BCF7228492AB800CFF094 /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF6C28492AB800CFF094 /* StockDetailViewController.swift */; };
@@ -26,6 +25,7 @@
 		578BCF7A284A34C700CFF094 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF79284A34C700CFF094 /* FavoriteViewController.swift */; };
 		578BCF7C284A34D900CFF094 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */; };
 		579A7D312854D5660040DED5 /* ChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579A7D302854D5660040DED5 /* ChartMarker.swift */; };
+		579A7D332855F4A10040DED5 /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579A7D322855F4A10040DED5 /* SearchRequest.swift */; };
 		57A28431284DB358008C7A3C /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 57A28430284DB358008C7A3C /* Charts */; };
 		57A28433284DB5E7008C7A3C /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A28432284DB5E7008C7A3C /* ChartsView.swift */; };
 		57B81EC5284F79B100C4AEAE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 57B81EC4284F79B100C4AEAE /* Kingfisher */; };
@@ -63,7 +63,6 @@
 		578BCF4B2849171F00CFF094 /* StocksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksRouter.swift; sourceTree = "<group>"; };
 		578BCF5228491F6900CFF094 /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
 		578BCF5428491F8E00CFF094 /* FileManagerFavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerFavoritesService.swift; sourceTree = "<group>"; };
-		578BCF5628491FA100CFF094 /* UserDefaultsFavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFavoritesService.swift; sourceTree = "<group>"; };
 		578BCF5828491FB800CFF094 /* FavoritesUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUpdateService.swift; sourceTree = "<group>"; };
 		578BCF6A28492AB800CFF094 /* StockDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailPresenter.swift; sourceTree = "<group>"; };
 		578BCF6C28492AB800CFF094 /* StockDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		578BCF79284A34C700CFF094 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		578BCF7B284A34D900CFF094 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		579A7D302854D5660040DED5 /* ChartMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarker.swift; sourceTree = "<group>"; };
+		579A7D322855F4A10040DED5 /* SearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
 		57A28432284DB5E7008C7A3C /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		57C792D628509B2C006A4CC4 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		57C792DD2850A24D006A4CC4 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -148,7 +148,6 @@
 			children = (
 				578BCF5228491F6900CFF094 /* FavoriteService.swift */,
 				578BCF5428491F8E00CFF094 /* FileManagerFavoritesService.swift */,
-				578BCF5628491FA100CFF094 /* UserDefaultsFavoritesService.swift */,
 				578BCF5828491FB800CFF094 /* FavoritesUpdateService.swift */,
 			);
 			path = FavoriteServices;
@@ -249,6 +248,7 @@
 			children = (
 				57C792DF2850A330006A4CC4 /* SearchViewController.swift */,
 				57C792E42851CD62006A4CC4 /* SearchView.swift */,
+				579A7D322855F4A10040DED5 /* SearchRequest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +497,7 @@
 				57C792E02850A330006A4CC4 /* SearchViewController.swift in Sources */,
 				57A28433284DB5E7008C7A3C /* ChartsView.swift in Sources */,
 				57E9E068283CBC4B00B84069 /* StocksCell.swift in Sources */,
+				579A7D332855F4A10040DED5 /* SearchRequest.swift in Sources */,
 				578BCF5328491F6900CFF094 /* FavoriteService.swift in Sources */,
 				57C792E728521BBC006A4CC4 /* DetailModel.swift in Sources */,
 				578BCF3428476D9E00CFF094 /* StocksModel.swift in Sources */,
@@ -509,7 +510,6 @@
 				57E9E054283CB52100B84069 /* AppDelegate.swift in Sources */,
 				57CA4B5D283FB56A00D89368 /* Router.swift in Sources */,
 				578BCF7428492AB800CFF094 /* ChartsResponce.swift in Sources */,
-				578BCF5728491FA100CFF094 /* UserDefaultsFavoritesService.swift in Sources */,
 				57CA4B5B283F968E00D89368 /* UIColor.swift in Sources */,
 				578BCF7A284A34C700CFF094 /* FavoriteViewController.swift in Sources */,
 				578BCF3228476D4B00CFF094 /* StocksPresenter.swift in Sources */,

@@ -23,23 +23,30 @@ final class SearchViewController: UIViewController {
         let view = SearhView()
         view.delegate = presenter
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.searchTextField.addTarget(self, action: #selector(editingBegan(_:)), for: .editingDidBegin)
         return view
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let layout  = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(RequestSearch.self, forCellWithReuseIdentifier: RequestSearch.typeName)
+        cv.backgroundColor = .white
+        cv.dataSource = self
+        cv.delegate = self
+        return cv
+    }()
+    
+    private lazy var collectionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "You’ve searched for this"
+        label.font = .bold(size: 18)
+        return label
+    }()
     
     
-//    private lazy var collectionView: UICollectionView = {
-//        let collectionView = UICollectionView()
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.backgroundColor = .systemBackground
-//        collectionView.register(RequestSearch.self, forCellWithReuseIdentifier: "RequestSearch")
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
-//        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
-//        collectionView.frame = .zero
-//        return collectionView
-//
-//    }()//Ща новом коммите делаю популярные запросы  и недавние запросы Серч
     
     
     private lazy var tableView: UITableView = {
@@ -51,6 +58,7 @@ final class SearchViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isHidden = true
         return tableView
     }()
     
@@ -61,7 +69,7 @@ final class SearchViewController: UIViewController {
         presenter.loadView()
         setupGestures()
     }
-
+    
     
     private func setupView() {
         view.backgroundColor = .systemBackground
@@ -74,7 +82,9 @@ final class SearchViewController: UIViewController {
         
         view.addSubview(searchView)
         view.addSubview(tableView)
-        
+        view.addSubview(collectionView)
+        view.addSubview(collectionLabel)
+       
         
         NSLayoutConstraint.activate([
             searchView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -84,22 +94,42 @@ final class SearchViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 8),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionLabel.topAnchor.constraint(equalTo: searchView.bottomAnchor,constant: 39),
+            collectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            collectionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+            collectionView.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor,constant: 15),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     private func setupGestures() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
-            self.view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func showError(_ message: String) {
         // show error
     }
+
+    
     
     @objc private func forcedHidingKeyboard() {
-            self.view.endEditing(true)
+        self.searchView.infoStackView.isHidden = true
+        self.collectionView.isHidden = false
+        self.collectionLabel.isHidden = false
+        self.tableView.isHidden = true
+        self.view.endEditing(true)
     }
+    
+    @objc func editingBegan(_ textField: UITextField) {
+        collectionView.isHidden = true
+        collectionLabel.isHidden = true
+        tableView.isHidden = false
+    }
+
     
 }
 
@@ -128,6 +158,27 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     
+}
+
+extension SearchViewController: UICollectionViewDataSource {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter.namesCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RequestSearch", for: indexPath) as! RequestSearch
+        cell.textLabel.text = presenter.getName(for: indexPath)
+        return cell
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row + 1)
+    }
 }
 
 extension SearchViewController: StocksViewProtocol {
