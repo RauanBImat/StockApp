@@ -60,8 +60,7 @@ final class StockDetailViewController: UIViewController {
             buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20),
             buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
             buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-            buyButton.heightAnchor.constraint(equalToConstant: 56),
-            buyButton.widthAnchor.constraint(equalToConstant: 328)
+            buyButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
     

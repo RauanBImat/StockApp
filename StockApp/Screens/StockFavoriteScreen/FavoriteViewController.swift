@@ -34,6 +34,19 @@ final class FavoriteViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "To add shares to favorites, click on the asterisk"
+        label.textAlignment = .center
+        label.font = UIFont.semiBold(size: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+        
+        return label
+    }()
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVeiw()
@@ -49,11 +62,15 @@ final class FavoriteViewController: UIViewController {
     }
     private func setupSubview() {
         view.addSubview(tableView)
+        view.addSubview(infoLabel)
+        
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -88,7 +105,14 @@ extension FavoriteViewController: UITableViewDelegate {
 }
 
 extension FavoriteViewController: FavoriteViewProtocol {
-    func updateView() {
+    func updateView(isStockEmpty:Bool) {
+        if isStockEmpty{
+            infoLabel.isHidden = false
+            tableView.isHidden = true
+        }else{
+            infoLabel.isHidden = true
+            tableView.isHidden = false
+        }
         tableView.reloadData()
     }
     
@@ -100,9 +124,18 @@ extension FavoriteViewController: FavoriteViewProtocol {
         
     }
     
-    func updateCell(for indexPath: IndexPath, state: Bool) {
-        state
-        ? tableView.insertRows(at: [indexPath], with: .automatic)
-        : tableView.deleteRows(at: [indexPath], with: .automatic)
+    func updateCell(for indexPath: IndexPath, state: Bool,isStockEmpty:Bool) {
+        if state{
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        }else{
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        if isStockEmpty{
+            infoLabel.isHidden = false
+            tableView.isHidden = true
+        }else{
+            infoLabel.isHidden = true
+            tableView.isHidden = false
+        }
     }
 }

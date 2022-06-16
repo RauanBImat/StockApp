@@ -42,6 +42,7 @@ final class StocksPresenter: StocksPresenterProtocol {
     func loadView() {
         // Идем в сеть и показываем лоадер
         view?.updateView(withLoader: true)
+    
         
         service.getStocks { [weak self] result in
             // Возвращаемся с данными и убираем лоадер

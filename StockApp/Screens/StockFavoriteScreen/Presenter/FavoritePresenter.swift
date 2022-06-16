@@ -9,10 +9,10 @@ import Foundation
 
 
 protocol FavoriteViewProtocol: AnyObject {
-    func updateView()
+    func updateView(isStockEmpty:Bool)
     func updateView(withLoader isLoading: Bool)
     func updateView(withError message: String)
-    func updateCell(for indexPath: IndexPath, state: Bool)
+    func updateCell(for indexPath: IndexPath, state: Bool,isStockEmpty: Bool)
 }
 
 protocol FavoritePresenterProtocol {
@@ -41,7 +41,7 @@ final class FavoritePresenter: FavoritePresenterProtocol {
     
     func loadView() {
         favoriteStocks = service.getFavoriteStocks()
-        view?.updateView()
+        view?.updateView(isStockEmpty: favoriteStocks.isEmpty)
     }
     
     func model(for indexPath: IndexPath) -> StockModelProtocol {
@@ -56,9 +56,9 @@ extension FavoritePresenter: FavoritesUpdateServiceProtocol {
         guard let id = notification.stockId else { return }
         
         if let index = favoriteStocks.firstIndex(where: { $0.id == id }) {
-            view?.updateCell(for: IndexPath(row: index, section: 0), state: true)
+            view?.updateCell(for: IndexPath(row: index, section: 0), state: true, isStockEmpty: favoriteStocks.isEmpty)
         } else if let index = prevoisFavorites.firstIndex(where: { $0.id == id }){
-            view?.updateCell(for: IndexPath(row: index, section: 0), state: false)
+            view?.updateCell(for: IndexPath(row: index, section: 0), state: false, isStockEmpty: favoriteStocks.isEmpty)
         }
     }
     
