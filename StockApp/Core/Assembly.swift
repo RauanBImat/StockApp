@@ -11,12 +11,12 @@ import UIKit
 
 final class Assembly {
     static let assembler: Assembly = .init()
-    let favoritesService: FavoritesServiceProtocol = FavoritesLocalService()
     
     private init() {}
     
     private lazy var network: NetworkService = Network()
     
+    let favoritesService: FavoritesServiceProtocol = FavoritesLocalService()
     private lazy var stocksService: StocksServiceProtocol = StocksService(network: network)
     private lazy var chartsService: ChartsServiceProtocol = ChartsService(network: network)
     
@@ -25,7 +25,6 @@ final class Assembly {
         let presneter = StocksPresenter(service: stocksService)
         let view = StocksViewController(presenter: presneter)
         presneter.view = view
-        
         return view
     }
     
@@ -44,11 +43,6 @@ final class Assembly {
         return searchVC
     }
     
-    
-    
-    func thirdVC() -> UIViewController {
-        UIViewController()
-    }
     
     func tabbarController() -> UIViewController {
         let tabbar = UITabBarController()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5749C1D328549E6B00ABE611 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 5749C1D228549E6B00ABE611 /* Charts */; };
+		57608E1D285C489100BE6EC6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57608E1C285C489100BE6EC6 /* LaunchScreenViewController.swift */; };
 		578BCF3228476D4B00CFF094 /* StocksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF3128476D4B00CFF094 /* StocksPresenter.swift */; };
 		578BCF3428476D9E00CFF094 /* StocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF3328476D9E00CFF094 /* StocksModel.swift */; };
 		578BCF362848C81400CFF094 /* StockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BCF352848C81400CFF094 /* StockResponse.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57608E1C285C489100BE6EC6 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		578BCF3128476D4B00CFF094 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
 		578BCF3328476D9E00CFF094 /* StocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksModel.swift; sourceTree = "<group>"; };
 		578BCF352848C81400CFF094 /* StockResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockResponse.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				57E9E061283CB52300B84069 /* Info.plist */,
 				57E9E053283CB52100B84069 /* AppDelegate.swift */,
 				57E9E05E283CB52300B84069 /* LaunchScreen.storyboard */,
+				57608E1C285C489100BE6EC6 /* LaunchScreenViewController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57608E1D285C489100BE6EC6 /* LaunchScreenViewController.swift in Sources */,
 				578BCF7228492AB800CFF094 /* StockDetailViewController.swift in Sources */,
 				578BCF5928491FB800CFF094 /* FavoritesUpdateService.swift in Sources */,
 				57CA4B66283FD0AA00D89368 /* NetworkService.swift in Sources */,
