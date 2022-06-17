@@ -5,14 +5,17 @@
 * MVP
 * No Storyboard
 * Autolayout
+* URLSession
+* FileManager and Notification center
+* Used library Charts and Kingfisher
 
 
 
 **Mini Demo Project**
 
 
-![Simulator Screen Recording - iPhone 13 - 2022-06-12 at 09 26 37](https://user-images.githubusercontent.com/55410394/173213340-7eba97d4-4bd2-471e-978d-23ee911c0d7e.gif)
 
+![Simulator Screen Recording - iPhone 13 - 2022-06-17 at 21 47 04](https://user-images.githubusercontent.com/55410394/174334160-db5061be-0757-49b8-aeb3-e25f53a5820b.gif)
 
 
 ## Figma Project
@@ -27,6 +30,5 @@
 
 
 
-**Status: In Development** 
+**Status: Finished** 
 
-The project will end on 13.06.2022
